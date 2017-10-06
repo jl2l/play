@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Play Draft</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="lib/css/app.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="lib/template.js"></script>
+    <script src="app.js"></script>
+
+    <script type="text/x-tmpl" id="tmpl-menu">
+        <nav>
+            <ul class="nav nav-pills float-right">
+                {% for (var i=0; i  < o.menuoption.length; i++) { %}
+                <li class="nav-item">
+                    <a class="nav-link active" data-league="{%=o.menuoption[i] %}"> {%=o.menuoption[i]%} </a>
+                </li>
+                {% } %}
+            </ul>
+        </nav>
+    </script>
+    <script type="text/x-tmpl" id="tmpl-player">
+        <strong class="display-3">{%=o.name_brief%}</strong>
+        <img class="league-logo pull-right" src="{%=o.leagueLogo %}" />
+        <img class="d-flex mr-5 profile-radial pull-left" src="{%=o.photo_url%}" alt="{%=o.league%}" />
+        <div class="profile-details">
+            <p class="lead">{%=o.first_name%} {%=o.last_name%} ({%=o.position%} )</p>
+            <p class="lead">{%=o.age%} years old. {%=o.ageStatus%}</p>
+        </div>
+    </script>
+
+    <!-- main template-->
+    <script type="text/x-tmpl" id="tmpl-frame">
+        <div class="col-xs-3 playerList draftmodal" id="{%=o.league %}_playergallery">
+            <div id="loading{%=o.league %}">Loading Players</div>
+            <div id="gallery{%=o.league %}" class="col-xs-12 responsive" style="display:none;">
+                <h3>{%=o.league %}</h3>
+                <ul id="playersDOM{%=o.league %}" class="content" style="list-style:none;">
+                    {% for (var i=0; i  < o.playerList.length; i++) { %}
+                    <!-- Content Repeated -->
+                    <li class="nav-item pull-left {%= (i % 2) ? 'alt' : '' %}" data-player-id="{%=o.playerList[i].id %}" data-player-league="{%=o.league %}" data-player-search="{%=o.playerList[i].first_name %} {%=o.playerList[i].last_name %}" onclick="javascript:loadThis(this)">
+                        <div>
+                            <div id="card-back-{%=o.playerList[i].id %}" class="all-content">
+                                <h5>
+                                    <b>
+                                        {%= o.playerList[i].first_name.length> 0 ? o.playerList[i].first_name :  o.playerList[i].NA %}
+                                        {%= o.playerList[i].last_name.length> 0 ? o.playerList[i].last_name :  o.playerList[i].NA %}
+                                    </b>
+                                </h5>
+                                <p>      {%= o.playerList[i].league.length> 0 ? o.playerList[i].league :  o.playerList[i].NA %} Team: {%= o.playerList[i].team.length> 0 ? o.playerList[i].team :  o.playerList[i].NA %}  </p>
+
+                                <div class="media" style="flex-wrap:wrap;align-content:flex-start;">
+                                    <img class="d-flex mr-3" alt="{%= o.playerList[i].first_name%}" src="{%= o.playerList[i].photo_url.length > 0 ? o.playerList[i].photo_url : o.playerList[i].genericProfile %}" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Content Repeated End -->
+                    {% } %}
+                </ul>
+            </div>
+        </div>
+
+    </script>
+</head>
+<body>
+    <div id="app" class="container "></div>
+    <div class="modal fade" id="PlayerView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Player Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="PlayerContent" class="modal-body ">
+                    Loading Player Content......
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">DRAFT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="navbar fixed-bottom navbar-light bg-faded">
+        <div><h3 class="text-muted"><input id="SearchPlayerText" type="text" placeholder="Find Your Favorite Player" onclick="this.select()" /></h3></div>
+    </footer>
+</body>
+</html>

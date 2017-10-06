@@ -1,0 +1,83 @@
+﻿
+body{
+margin:0px;
+}
+
+.text-muted input {
+    padding:20px;
+    font-size:larger;
+}
+
+
+footer{
+box-shadow:2px 0px 1px gray;
+background-color:white;
+}
+
+
+.alt {
+color:black;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.playerList{
+    max-height:900px;
+    float:left;
+    max-width:25%;
+    overflow:scroll;
+    overflow-x: hidden;
+}
+
+.playerList::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+} 
+
+.playerList::-webkit-scrollbar-thumb {
+    width: 6px;
+    background-color: #1A5BB6;
+} 
+
+
+.league-logo{
+    height:80px;
+   position: absolute;
+    top: 30px;
+    right: 20px;
+    opacity: 0.2;
+}
+.profile-radial{
+   border-radius: 100px;
+    background: black;
+}
+
+.profile-details{
+    text-align:left;
+}
+
+.draftmodal{
+    background-image: url(../../draft-logo.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.responsive h3{
+    text-align: center;
+    position: relative;
+    color:whitesmoke;
+    font-size:larger;
+    font-weight:bolder;
+    top: 125px;
+}
+
+.content LI:first-child{
+        margin-top: 204px;
+}
