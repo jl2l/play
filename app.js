@@ -73,7 +73,7 @@ function App() {
     {
         var howOld = def = Math.abs(def);
         if (def === 0) {
-           return "{0} is the average age as the rest of this teammates. ".format(player);
+            return "{0} is the average age as the rest of this teammates. ".format(player);
         }
         if (def < 0) {
             return "{0} is {1} years younger then his average teammates. ".format(player, howOld);
