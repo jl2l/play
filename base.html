@@ -44,6 +44,10 @@
                     <li class="nav-item pull-left {%= (i % 2) ? 'alt' : '' %}" data-player-id="{%=o.playerList[i].id %}" data-player-league="{%=o.league %}" data-player-search="{%=o.playerList[i].first_name %} {%=o.playerList[i].last_name %}" onclick="javascript:loadThis(this)">
                         <div>
                             <div id="card-back-{%=o.playerList[i].id %}" class="all-content">
+                                <div class="media" style="flex-wrap:wrap;align-content:flex-start;">
+                                    <img class="d-flex mr-3" alt="{%= o.playerList[i].first_name%}" src="{%= o.playerList[i].photo_url.length > 0 ? o.playerList[i].photo_url : o.playerList[i].genericProfile %}" />
+
+                                </div>
                                 <h5>
                                     <b>
                                         {%= o.playerList[i].first_name.length> 0 ? o.playerList[i].first_name :  o.playerList[i].NA %}
@@ -52,10 +56,7 @@
                                 </h5>
                                 <p>      {%= o.playerList[i].league.length> 0 ? o.playerList[i].league :  o.playerList[i].NA %} Team: {%= o.playerList[i].team.length> 0 ? o.playerList[i].team :  o.playerList[i].NA %}  </p>
 
-                                <div class="media" style="flex-wrap:wrap;align-content:flex-start;">
-                                    <img class="d-flex mr-3" alt="{%= o.playerList[i].first_name%}" src="{%= o.playerList[i].photo_url.length > 0 ? o.playerList[i].photo_url : o.playerList[i].genericProfile %}" />
-
-                                </div>
+                               
                             </div>
                         </div>
                     </li>
