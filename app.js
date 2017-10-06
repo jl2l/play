@@ -71,7 +71,7 @@ function App() {
     // checks the age of the player and returns a string
     self.ageDector = function (age, def, player)
     {
-        var howOld = Math.abs(def);
+        var howOld = def = Math.abs(def);
         if (def === 0) {
            return "{0} is the average age. ".format(player);
         }
